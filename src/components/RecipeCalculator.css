@@ -26,31 +26,31 @@
 }
 
 /* Cat Selection */
-.cat-selection {
+.calculator-cat-selection {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.cat-info {
+.calculator-cat-info {
   display: flex;
   gap: 2rem;
   padding-top: 1rem;
   border-top: 1px solid var(--border-color);
 }
 
-.cat-info-item {
+.calculator-cat-info-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.cat-info-item .label {
+.calculator-cat-info-item .label {
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
-.cat-info-item .value {
+.calculator-cat-info-item .value {
   font-weight: 600;
   color: var(--primary-color);
   font-size: 1.1rem;

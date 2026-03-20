@@ -213,18 +213,18 @@
 
 .cat-info {
   flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
 }
 
 .cat-name {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 500;
   line-height: 1.5rem;
   color: var(--md-sys-color-on-surface);
-  margin-bottom: var(--md-sys-spacing-1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin: 0;
 }
 
 .cat-chip {
@@ -236,6 +236,7 @@
   border-radius: var(--md-sys-radius-small);
   font-size: 0.75rem;
   font-weight: 500;
+  flex-shrink: 0;
 }
 
 .cat-actions-menu {

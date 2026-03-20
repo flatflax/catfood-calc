@@ -205,27 +205,27 @@ export function RecipeCalculator() {
             ))}
           </select>
         </div>
-        {selectedCat && (
-          <div className="cat-info">
-            <div className="cat-info-item">
-              <span className="label">每日能量需求:</span>
-              <span className="value">
-                {calculateDailyRequirement(selectedCat).der.toFixed(0)} kcal
-              </span>
-            </div>
-            <div className="cat-info-item">
-              <span className="label">建议喂食量:</span>
-              <span className="value">
-                {nutritionAnalysis
-                  ? calculateFeedingAmount(
-                      calculateDailyRequirement(selectedCat).der,
-                      nutritionAnalysis.energy / (nutritionAnalysis.totalWeight / 100)
-                    ).toFixed(0)
-                  : '-'} g/天
-              </span>
-            </div>
-          </div>
-        )}
+{selectedCat && (
+              <div className="calculator-cat-info">
+                <div className="calculator-cat-info-item">
+                  <span className="label">每日能量需求:</span>
+                  <span className="value">
+                    {calculateDailyRequirement(selectedCat).der.toFixed(0)} kcal
+                  </span>
+                </div>
+                <div className="calculator-cat-info-item">
+                  <span className="label">建议喂食量:</span>
+                  <span className="value">
+                    {nutritionAnalysis
+                      ? calculateFeedingAmount(
+                          calculateDailyRequirement(selectedCat).der,
+                          nutritionAnalysis.energy / (nutritionAnalysis.totalWeight / 100)
+                        ).toFixed(0)
+                      : '-'} g/天
+                  </span>
+                </div>
+              </div>
+            )}
       </div>
 
       <div className="calculator-grid">

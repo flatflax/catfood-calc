@@ -197,7 +197,7 @@ export const defaultIngredients: Ingredient[] = [
   {
     id: 'turkey',
     name: '火鸡肉',
-    category: IngredientCategory.MEAT,
+    category: IngredientCategory.WHITE_MEAT,
     nutritionPer100g: {
       protein: 22.0,
       fat: 2.5,

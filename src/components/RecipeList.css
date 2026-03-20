@@ -1,0 +1,551 @@
+/**
+ * 配方列表 - Material Design 3 样式
+ */
+
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-4);
+}
+
+.manager-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--md-sys-spacing-2);
+}
+
+.manager-header h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2rem;
+  color: var(--md-sys-color-on-surface);
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-3);
+}
+
+.filter-chip-group {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+}
+
+.filter-chip-group .form-select {
+  width: auto;
+  min-width: 150px;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--md-sys-spacing-10);
+  background: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-radius-large);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.empty-illustration {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-sys-color-secondary-container);
+  border-radius: var(--md-sys-radius-full);
+  color: var(--md-sys-color-on-secondary-container);
+  margin-bottom: var(--md-sys-spacing-4);
+}
+
+.empty-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: var(--md-sys-spacing-2);
+}
+
+.empty-description {
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Recipes Grid */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--md-sys-spacing-4);
+}
+
+/* Recipe Card - M3 Style */
+.recipe-card {
+  background: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-radius-large);
+  padding: var(--md-sys-spacing-4);
+  box-shadow: var(--md-sys-elevation-1);
+  transition: box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-3);
+}
+
+.recipe-card:hover {
+  box-shadow: var(--md-sys-elevation-2);
+}
+
+.recipe-card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-3);
+}
+
+.recipe-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-sys-color-secondary-container);
+  border-radius: var(--md-sys-radius-medium);
+  color: var(--md-sys-color-on-secondary-container);
+  font-size: 1.5rem;
+}
+
+.recipe-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.recipe-name {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: var(--md-sys-color-on-surface);
+  margin-bottom: var(--md-sys-spacing-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recipe-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-1);
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Ingredients Preview */
+.recipe-ingredients-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--md-sys-spacing-2);
+}
+
+.ingredient-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-1);
+  padding: var(--md-sys-spacing-1) var(--md-sys-spacing-2);
+  background: var(--md-sys-color-surface-variant);
+  border-radius: var(--md-sys-radius-small);
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.ingredient-chip.more {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+/* Stats */
+.recipe-stats {
+  display: flex;
+  gap: var(--md-sys-spacing-3);
+  padding: var(--md-sys-spacing-2) 0;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-1);
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.stat-item.highlight {
+  color: var(--md-sys-color-success);
+}
+
+.stat-item .stat-value {
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.stat-item.highlight .stat-value {
+  color: var(--md-sys-color-success);
+}
+
+/* Nutrition Preview */
+.recipe-nutrition-preview {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-2);
+}
+
+.nutrition-preview-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+}
+
+.preview-label {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+  width: 50px;
+}
+
+.preview-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--md-sys-color-surface-variant);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.preview-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.preview-fill.good {
+  background: var(--md-sys-color-success);
+}
+
+.preview-fill.low {
+  background: var(--md-sys-color-warning);
+}
+
+/* Card Actions */
+.recipe-card-actions {
+  display: flex;
+  gap: var(--md-sys-spacing-1);
+  margin-top: auto;
+}
+
+/* Dialog */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--md-sys-spacing-4);
+}
+
+.dialog {
+  background: var(--md-sys-color-surface);
+  border-radius: var(--md-sys-radius-large);
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: var(--md-sys-elevation-3);
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-large {
+  max-width: 700px;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--md-sys-spacing-4);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.dialog-title-section {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-3);
+}
+
+.dialog-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-sys-color-secondary-container);
+  border-radius: var(--md-sys-radius-medium);
+  color: var(--md-sys-color-on-secondary-container);
+  font-size: 1.5rem;
+}
+
+.dialog-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+}
+
+.dialog-subtitle {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-1);
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.dialog-content {
+  padding: var(--md-sys-spacing-4);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4) var(--md-sys-spacing-4);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* Dialog Sections */
+.dialog-section {
+  margin-bottom: var(--md-sys-spacing-6);
+}
+
+.dialog-section:last-child {
+  margin-bottom: 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-bottom: var(--md-sys-spacing-3);
+  padding-bottom: var(--md-sys-spacing-2);
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* Detail Ingredients */
+.detail-ingredients {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-2);
+}
+
+.detail-ingredient {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+  background: var(--md-sys-color-surface-variant);
+  border-radius: var(--md-sys-radius-medium);
+}
+
+.ingredient-main {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+}
+
+.ingredient-main .material-icons {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.ing-name {
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.ingredient-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-3);
+}
+
+.ing-weight {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.875rem;
+}
+
+.ing-percent {
+  font-weight: 600;
+  color: var(--md-sys-color-primary);
+  min-width: 50px;
+  text-align: right;
+}
+
+/* Nutrition Grid */
+.detail-nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--md-sys-spacing-3);
+}
+
+@media (max-width: 600px) {
+  .detail-nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.nutrition-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--md-sys-spacing-3);
+  background: var(--md-sys-color-surface-variant);
+  border-radius: var(--md-sys-radius-medium);
+  text-align: center;
+}
+
+.nutrition-box.highlight {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.box-label {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+  margin-bottom: var(--md-sys-spacing-1);
+}
+
+.nutrition-box.highlight .box-label {
+  color: var(--md-sys-color-on-primary-container);
+  opacity: 0.8;
+}
+
+.box-value {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  line-height: 2rem;
+}
+
+.nutrition-box.highlight .box-value {
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.box-unit {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.nutrition-box.highlight .box-unit {
+  color: var(--md-sys-color-on-primary-container);
+  opacity: 0.8;
+}
+
+/* Cost Section */
+.detail-cost {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-4);
+}
+
+.cost-summary {
+  display: flex;
+  gap: var(--md-sys-spacing-4);
+  align-items: flex-start;
+}
+
+.cost-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-1);
+}
+
+.cost-item.large {
+  flex: 1;
+}
+
+.cost-label {
+  font-size: 0.75rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.cost-value {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--md-sys-color-success);
+  line-height: 2.5rem;
+}
+
+.cost-amount {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.cost-breakdown {
+  border-top: 1px dashed var(--md-sys-color-outline-variant);
+  padding-top: var(--md-sys-spacing-3);
+}
+
+.cost-breakdown-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--md-sys-spacing-1) 0;
+  font-size: 0.875rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+/* Icon Button */
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  border-radius: var(--md-sys-radius-full);
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: all 0.2s;
+}
+
+.icon-btn:hover {
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dialog,
+  .dialog-large {
+    max-height: 95vh;
+    margin: var(--md-sys-spacing-2);
+  }
+
+  .dialog-content {
+    padding: var(--md-sys-spacing-3);
+  }
+
+  .detail-nutrition-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

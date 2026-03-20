@@ -1,0 +1,657 @@
+/**
+ * 猫饭计算器 - Material Design 3 (M3) 风格
+ * Elevation 规范: https://m3.material.io/styles/elevation/overview
+ */
+
+:root {
+  /* M3 颜色系统 - 使用色调而非饱和度 */
+  --md-sys-color-primary: #6750A4;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #EADDFF;
+  --md-sys-color-on-primary-container: #21005D;
+  
+  --md-sys-color-secondary: #625B71;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #E8DEF8;
+  --md-sys-color-on-secondary-container: #1D192B;
+  
+  --md-sys-color-tertiary: #7D5260;
+  --md-sys-color-on-tertiary: #FFFFFF;
+  --md-sys-color-tertiary-container: #FFD8E4;
+  --md-sys-color-on-tertiary-container: #31111D;
+  
+  /* 表面颜色 - M3 使用表面色调 */
+  --md-sys-color-surface: #FFFBFE;
+  --md-sys-color-surface-variant: #E7E0EC;
+  --md-sys-color-on-surface: #1C1B1F;
+  --md-sys-color-on-surface-variant: #49454F;
+  
+  /* 表面色调 - 用于 elevation */
+  --md-sys-color-surface-tint: #6750A4;
+  
+  /* 背景 */
+  --md-sys-color-background: #FFFBFE;
+  --md-sys-color-on-background: #1C1B1F;
+  
+  /* 轮廓 */
+  --md-sys-color-outline: #79747E;
+  --md-sys-color-outline-variant: #CAC4D0;
+  
+  /* 状态颜色 */
+  --md-sys-color-error: #B3261E;
+  --md-sys-color-on-error: #FFFFFF;
+  --md-sys-color-error-container: #F9DEDC;
+  --md-sys-color-on-error-container: #410E0B;
+  
+  --md-sys-color-success: #2E7D32;
+  --md-sys-color-warning: #ED6C02;
+  
+  /* ========================================
+     M3 Elevation 系统 - 表面色调 + 阴影
+     ======================================== */
+  
+  /* Level 0: 无 elevation，纯表面 */
+  --md-sys-elevation-0: none;
+  
+  /* Level 1: 最小组件如卡片、按钮 */
+  --md-sys-elevation-1: 
+    0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-surface-tint-1: linear-gradient(0deg, rgba(103, 80, 164, 0.05), rgba(103, 80, 164, 0.05));
+  
+  /* Level 2: 悬停状态 */
+  --md-sys-elevation-2: 
+    0px 1px 2px rgba(0, 0, 0, 0.3),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-surface-tint-2: linear-gradient(0deg, rgba(103, 80, 164, 0.08), rgba(103, 80, 164, 0.08));
+  
+  /* Level 3: 菜单、对话框 */
+  --md-sys-elevation-3: 
+    0px 1px 3px rgba(0, 0, 0, 0.3),
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-surface-tint-3: linear-gradient(0deg, rgba(103, 80, 164, 0.11), rgba(103, 80, 164, 0.11));
+  
+  /* Level 4: 导航栏、底部栏 */
+  --md-sys-elevation-4: 
+    0px 2px 3px rgba(0, 0, 0, 0.3),
+    0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-surface-tint-4: linear-gradient(0deg, rgba(103, 80, 164, 0.12), rgba(103, 80, 164, 0.12));
+  
+  /* Level 5: 模态对话框、FAB */
+  --md-sys-elevation-5: 
+    0px 4px 4px rgba(0, 0, 0, 0.3),
+    0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+  --md-sys-surface-tint-5: linear-gradient(0deg, rgba(103, 80, 164, 0.14), rgba(103, 80, 164, 0.14));
+  
+  /* M3 圆角系统 */
+  --md-sys-radius-none: 0px;
+  --md-sys-radius-extra-small: 4px;
+  --md-sys-radius-small: 8px;
+  --md-sys-radius-medium: 12px;
+  --md-sys-radius-large: 16px;
+  --md-sys-radius-extra-large: 28px;
+  --md-sys-radius-full: 50%;
+  
+  /* 间距 - M3 使用 4dp 网格 */
+  --md-sys-spacing-0: 0px;
+  --md-sys-spacing-1: 4px;
+  --md-sys-spacing-2: 8px;
+  --md-sys-spacing-3: 12px;
+  --md-sys-spacing-4: 16px;
+  --md-sys-spacing-5: 20px;
+  --md-sys-spacing-6: 24px;
+  --md-sys-spacing-7: 28px;
+  --md-sys-spacing-8: 32px;
+  --md-sys-spacing-9: 36px;
+  --md-sys-spacing-10: 40px;
+  
+  /* 字体 */
+  --md-sys-font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  
+  /* 兼容性变量 */
+  --primary-color: var(--md-sys-color-primary);
+  --primary-dark: #4F378B;
+  --bg-color: var(--md-sys-color-background);
+  --card-bg: var(--md-sys-color-surface);
+  --text-primary: var(--md-sys-color-on-surface);
+  --text-secondary: var(--md-sys-color-on-surface-variant);
+  --border-color: var(--md-sys-color-outline-variant);
+  --success-color: var(--md-sys-color-success);
+  --warning-color: var(--md-sys-color-warning);
+  --danger-color: var(--md-sys-color-error);
+  --shadow: var(--md-sys-elevation-1);
+  --shadow-hover: var(--md-sys-elevation-2);
+  --radius: var(--md-sys-radius-medium);
+  --radius-sm: var(--md-sys-radius-small);
+  --radius-lg: var(--md-sys-radius-large);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--md-sys-font-family);
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-surface);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ========================================
+   Top App Bar - M3 Level 0 (无 elevation)
+   ======================================== */
+.app-header {
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  padding: 0 var(--md-sys-spacing-4);
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: none;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  position: relative;
+  z-index: 1;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-3);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--md-sys-color-primary-container);
+  border-radius: var(--md-sys-radius-medium);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.logo-icon .material-icons {
+  font-size: 24px;
+}
+
+.logo h1 {
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  letter-spacing: 0;
+}
+
+.stats {
+  display: flex;
+  gap: var(--md-sys-spacing-2);
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+  background: var(--md-sys-color-surface-variant);
+  border-radius: var(--md-sys-radius-small);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.stat-icon {
+  font-size: 1rem;
+}
+
+/* ========================================
+   Navigation - M3 Level 0
+   ======================================== */
+.app-nav {
+  background: var(--md-sys-color-surface);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
+  display: flex;
+  gap: var(--md-sys-spacing-2);
+  box-shadow: none;
+  overflow-x: auto;
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  border-radius: var(--md-sys-radius-small);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.nav-btn:hover {
+  color: var(--md-sys-color-on-surface);
+  background: var(--md-sys-color-surface-variant);
+}
+
+/* M3 选中状态 - 使用容器色 */
+.nav-btn.active {
+  color: var(--md-sys-color-on-secondary-container);
+  background: var(--md-sys-color-secondary-container);
+}
+
+.nav-icon {
+  font-size: 1.25rem;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   Main Content
+   ======================================== */
+.app-main {
+  flex: 1;
+  padding: var(--md-sys-spacing-4);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========================================
+   Footer - M3 Level 0
+   ======================================== */
+.app-footer {
+  background: var(--md-sys-color-surface);
+  padding: var(--md-sys-spacing-4);
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--md-sys-color-on-surface-variant);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* ========================================
+   Cards - M3 Level 1 (表面色调 + 微妙阴影)
+   ======================================== */
+.card {
+  background: var(--md-sys-color-surface);
+  background-image: var(--md-sys-surface-tint-1);
+  border-radius: var(--md-sys-radius-large);
+  padding: var(--md-sys-spacing-4);
+  box-shadow: var(--md-sys-elevation-1);
+  margin-bottom: var(--md-sys-spacing-4);
+  transition: all 0.2s ease;
+  border: none;
+}
+
+/* M3 hover 提升到 Level 2 */
+.card:hover {
+  background-image: var(--md-sys-surface-tint-2);
+  box-shadow: var(--md-sys-elevation-2);
+}
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.75rem;
+  margin-bottom: var(--md-sys-spacing-4);
+  color: var(--md-sys-color-on-surface);
+}
+
+/* ========================================
+   Form Elements - M3 Outlined Text Fields
+   ======================================== */
+.form-group {
+  margin-bottom: var(--md-sys-spacing-4);
+}
+
+.form-label {
+  display: block;
+  margin-bottom: var(--md-sys-spacing-1);
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1rem;
+  color: var(--md-sys-color-on-surface-variant);
+  letter-spacing: 0.4px;
+}
+
+.form-input,
+.form-select {
+  width: 100%;
+  padding: var(--md-sys-spacing-3) var(--md-sys-spacing-4);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-radius-small);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  transition: all 0.2s ease;
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+  outline: none;
+}
+
+.form-input:hover,
+.form-select:hover {
+  border-color: var(--md-sys-color-on-surface);
+}
+
+.form-input:focus,
+.form-select:focus {
+  border-color: var(--md-sys-color-primary);
+  border-width: 2px;
+  padding: calc(var(--md-sys-spacing-3) - 0.5px) calc(var(--md-sys-spacing-4) - 0.5px);
+}
+
+.form-input::placeholder {
+  color: var(--md-sys-color-on-surface-variant);
+  opacity: 0.6;
+}
+
+/* ========================================
+   Buttons - M3 Filled & Outlined
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
+  border: none;
+  border-radius: var(--md-sys-radius-small);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  min-width: 48px;
+}
+
+/* M3 Filled Button - Level 0，hover 到 Level 1 */
+.btn-primary {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-0);
+}
+
+.btn-primary:hover {
+  background: #7F67BE;
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.btn-primary:active {
+  background: #4F378B;
+  box-shadow: var(--md-sys-elevation-0);
+}
+
+/* M3 Outlined Button */
+.btn-secondary {
+  background: transparent;
+  color: var(--md-sys-color-primary);
+  border: 1px solid var(--md-sys-color-outline);
+}
+
+.btn-secondary:hover {
+  background: rgba(103, 80, 164, 0.08);
+  border-color: var(--md-sys-color-primary);
+}
+
+.btn-secondary:active {
+  background: rgba(103, 80, 164, 0.12);
+}
+
+/* M3 Text Button */
+.btn-text {
+  background: transparent;
+  color: var(--md-sys-color-primary);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+}
+
+.btn-text:hover {
+  background: rgba(103, 80, 164, 0.08);
+}
+
+.btn-danger {
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.btn-danger:hover {
+  background: #F9DEDC;
+}
+
+.btn-sm {
+  height: 32px;
+  padding: var(--md-sys-spacing-1) var(--md-sys-spacing-3);
+  font-size: 0.8125rem;
+}
+
+/* ========================================
+   FAB - M3 Level 3 (表面色调明显)
+   ======================================== */
+.btn-fab {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--md-sys-radius-large);
+  padding: 0;
+  background: var(--md-sys-color-primary-container);
+  background-image: var(--md-sys-surface-tint-3);
+  color: var(--md-sys-color-on-primary-container);
+  box-shadow: var(--md-sys-elevation-3);
+  position: fixed;
+  bottom: var(--md-sys-spacing-6);
+  right: var(--md-sys-spacing-6);
+  z-index: 1000;
+  font-size: 1.5rem;
+  border: none;
+}
+
+.btn-fab:hover {
+  background-image: var(--md-sys-surface-tint-4);
+  box-shadow: var(--md-sys-elevation-4);
+}
+
+.btn-fab:active {
+  background-image: var(--md-sys-surface-tint-3);
+  box-shadow: var(--md-sys-elevation-3);
+}
+
+/* ========================================
+   Chips - M3 Assist Chips (Level 0)
+   ======================================== */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-1) var(--md-sys-spacing-3);
+  background: var(--md-sys-color-surface-variant);
+  border: 1px solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-radius-small);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--md-sys-elevation-0);
+}
+
+.chip:hover {
+  background: rgba(103, 80, 164, 0.08);
+}
+
+.chip-active {
+  background: var(--md-sys-color-secondary-container);
+  background-image: var(--md-sys-surface-tint-1);
+  color: var(--md-sys-color-on-secondary-container);
+  border-color: transparent;
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+/* ========================================
+   Grid
+   ======================================== */
+.grid {
+  display: grid;
+  gap: var(--md-sys-spacing-4);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* ========================================
+   Divider
+   ======================================== */
+.divider {
+  height: 1px;
+  background: var(--md-sys-color-outline-variant);
+  margin: var(--md-sys-spacing-4) 0;
+}
+
+/* ========================================
+   Elevation 工具类
+   ======================================== */
+.elevation-0 {
+  box-shadow: var(--md-sys-elevation-0);
+  background-image: none;
+}
+
+.elevation-1 {
+  box-shadow: var(--md-sys-elevation-1);
+  background-image: var(--md-sys-surface-tint-1);
+}
+
+.elevation-2 {
+  box-shadow: var(--md-sys-elevation-2);
+  background-image: var(--md-sys-surface-tint-2);
+}
+
+.elevation-3 {
+  box-shadow: var(--md-sys-elevation-3);
+  background-image: var(--md-sys-surface-tint-3);
+}
+
+.elevation-4 {
+  box-shadow: var(--md-sys-elevation-4);
+  background-image: var(--md-sys-surface-tint-4);
+}
+
+.elevation-5 {
+  box-shadow: var(--md-sys-elevation-5);
+  background-image: var(--md-sys-surface-tint-5);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+@media (max-width: 768px) {
+  .app-header {
+    height: 56px;
+    padding: 0 var(--md-sys-spacing-3);
+  }
+
+  .logo h1 {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+  }
+
+  .stats {
+    gap: var(--md-sys-spacing-1);
+  }
+
+  .nav-text {
+    display: none;
+  }
+
+  .app-main {
+    padding: var(--md-sys-spacing-3);
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  .btn-fab {
+    bottom: var(--md-sys-spacing-4);
+    right: var(--md-sys-spacing-4);
+  }
+  
+  .card {
+    border-radius: var(--md-sys-radius-medium);
+    padding: var(--md-sys-spacing-3);
+  }
+}
+
+/* ========================================
+   Dark Mode - M3 Dark Theme
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --md-sys-color-primary: #D0BCFF;
+    --md-sys-color-on-primary: #381E72;
+    --md-sys-color-primary-container: #4F378B;
+    --md-sys-color-on-primary-container: #EADDFF;
+    
+    --md-sys-color-secondary: #CCC2DC;
+    --md-sys-color-on-secondary: #332D41;
+    --md-sys-color-secondary-container: #4A4458;
+    --md-sys-color-on-secondary-container: #E8DEF8;
+    
+    --md-sys-color-surface: #1C1B1F;
+    --md-sys-color-surface-variant: #49454F;
+    --md-sys-color-on-surface: #E6E1E5;
+    --md-sys-color-on-surface-variant: #CAC4D0;
+    
+    --md-sys-color-surface-tint: #D0BCFF;
+    
+    --md-sys-color-background: #1C1B1F;
+    --md-sys-color-on-background: #E6E1E5;
+    
+    --md-sys-color-outline: #938F99;
+    --md-sys-color-outline-variant: #49454F;
+    
+    --md-sys-color-error: #F2B8B5;
+    --md-sys-color-error-container: #8C1D18;
+    --md-sys-color-on-error-container: #F9DEDC;
+    
+    /* Dark mode elevation 使用表面色调 */
+    --md-sys-surface-tint-1: linear-gradient(0deg, rgba(208, 188, 255, 0.05), rgba(208, 188, 255, 0.05));
+    --md-sys-surface-tint-2: linear-gradient(0deg, rgba(208, 188, 255, 0.08), rgba(208, 188, 255, 0.08));
+    --md-sys-surface-tint-3: linear-gradient(0deg, rgba(208, 188, 255, 0.11), rgba(208, 188, 255, 0.11));
+    --md-sys-surface-tint-4: linear-gradient(0deg, rgba(208, 188, 255, 0.12), rgba(208, 188, 255, 0.12));
+    --md-sys-surface-tint-5: linear-gradient(0deg, rgba(208, 188, 255, 0.14), rgba(208, 188, 255, 0.14));
+  }
+}

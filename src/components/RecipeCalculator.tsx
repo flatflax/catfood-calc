@@ -22,6 +22,7 @@ import {
   validateRecipe,
 } from '../utils/nutritionCalculator';
 import { calculateRecipeCost, calculateDailyCost } from '../utils/costCalculator';
+import { recipeTemplates, createRecipeFromTemplate } from '../utils/defaultData';
 import { MaterialIcon, Icons } from './MaterialIcon';
 import './RecipeCalculator.css';
 
@@ -42,6 +43,7 @@ export function RecipeCalculator() {
   const [recipeItems, setRecipeItems] = useState<RecipeIngredient[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<IngredientCategory | 'all'>('all');
   const [showSaveModal, setShowSaveModal] = useState(false);
+  const [showTemplates, setShowTemplates] = useState(false);
 
   // Computed
   const selectedCat = useMemo(() => 
@@ -142,6 +144,31 @@ export function RecipeCalculator() {
     setRecipeItems([]);
   };
 
+  const applyTemplate = (templateId: string) => {
+    const template = recipeTemplates.find((t) => t.id === templateId);
+    if (!template) return;
+    
+    // 根据原始ID找到实际的食材ID
+    const newItems = template.ingredients.map((item) => {
+      // 找到匹配的食材（通过原始ID前缀匹配）
+      const matchedIngredient = ingredients.find((ing) => 
+        ing.id.startsWith(item.ingredientId)
+      );
+      
+      if (matchedIngredient) {
+        return {
+          ingredientId: matchedIngredient.id,
+          weight: Math.round((500 * item.weightPercent) / 100),
+        };
+      }
+      return null;
+    }).filter((item): item is { ingredientId: string; weight: number } => item !== null);
+    
+    setRecipeItems(newItems);
+    setRecipeName(template.name);
+    setShowTemplates(false);
+  };
+
   // Render helpers
   const getCategoryName = (category: IngredientCategory) => {
     const names: Record<IngredientCategory, string> = {
@@ -173,7 +200,11 @@ export function RecipeCalculator() {
         <h2>
           <MaterialIcon name={Icons.calculator} /> 配方计算器
         </h2>
-        <div className="header-actions">
+      <div className="header-actions">
+          <button className="btn btn-secondary" onClick={() => setShowTemplates(true)}>
+            <MaterialIcon name="menu_book" style={{ fontSize: '18px', marginRight: '4px' }} />
+            配方模板
+          </button>
           <button className="btn btn-secondary" onClick={clearRecipe}>
             <MaterialIcon name={Icons.clear} style={{ fontSize: '18px', marginRight: '4px' }} />
             清空
@@ -183,7 +214,7 @@ export function RecipeCalculator() {
             onClick={handleSaveRecipe}
             disabled={!recipeName.trim() || recipeItems.length === 0}
           >
-          <MaterialIcon name={Icons.save} style={{ fontSize: '18px', marginRight: '4px' }} />
+            <MaterialIcon name={Icons.save} style={{ fontSize: '18px', marginRight: '4px' }} />
             保存配方
           </button>
         </div>
@@ -494,6 +525,60 @@ export function RecipeCalculator() {
           )}
         </div>
       </div>
+
+      {/* Templates Modal */}
+      {showTemplates && (
+        <div className="modal-overlay" onClick={() => setShowTemplates(false)}>
+          <div className="modal modal-large" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-header">
+              <h3 className="modal-title">
+                <MaterialIcon name="menu_book" /> 选择配方模板
+              </h3>
+              <button className="btn-close" onClick={() => setShowTemplates(false)}>
+                <MaterialIcon name={Icons.close} />
+              </button>
+            </div>
+            <div className="modal-body">
+              <div className="templates-grid">
+                {recipeTemplates.map((template) => (
+                  <div key={template.id} className="template-card">
+                    <div className="template-header">
+                      <h4 className="template-name">{template.name}</h4>
+                      <span className="template-badge">预设</span>
+                    </div>
+                    <p className="template-description">{template.description}</p>
+                <div className="template-ingredients">
+                  {template.ingredients.slice(0, 4).map((item, idx) => {
+                    // 根据原始ID前缀找到匹配的食材
+                    const matchedIngredient = ingredients.find((ing) => 
+                      ing.id.startsWith(item.ingredientId)
+                    );
+                    return (
+                      <span key={idx} className="template-ingredient-tag">
+                        {matchedIngredient?.name || item.ingredientId}
+                      </span>
+                    );
+                  })}
+                  {template.ingredients.length > 4 && (
+                    <span className="template-ingredient-tag more">
+                      +{template.ingredients.length - 4}
+                    </span>
+                  )}
+                </div>
+                    <button
+                      className="btn btn-primary btn-full"
+                      onClick={() => applyTemplate(template.id)}
+                    >
+                      <MaterialIcon name="add" />
+                      应用此模板
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Save Modal */}
       {showSaveModal && (

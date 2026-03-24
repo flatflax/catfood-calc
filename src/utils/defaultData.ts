@@ -238,7 +238,7 @@ export const defaultIngredients: Ingredient[] = [
       magnesium: 18,
       potassium: 220,
       sodium: 70,
-      taurine: 350, // 心脏富含牛磺酸
+      taurine: 350,
       omega_3: 0.1,
       omega_6: 1.5,
     },
@@ -381,7 +381,7 @@ export const defaultIngredients: Ingredient[] = [
       omega_3: 0.1,
       omega_6: 1.2,
     },
-    ediblePortion: 0.75, // 骨头可食部较低
+    ediblePortion: 0.75,
     pricePerKg: 12,
     isDefault: true,
     createdAt: Date.now(),
@@ -634,5 +634,115 @@ export function getSampleCats(): Cat[] {
     id: `cat_${Date.now()}`,
     createdAt: Date.now(),
     updatedAt: Date.now(),
+  }));
+}
+
+/**
+ * 经典配方模板
+ * 基于生骨肉喂养经验配方
+ */
+export interface RecipeTemplate {
+  id: string;
+  name: string;
+  description: string;
+  ingredients: Array<{
+    ingredientId: string;
+    weightPercent: number;
+  }>;
+  isDefault: boolean;
+}
+
+export const recipeTemplates: RecipeTemplate[] = [
+  {
+    id: 'template_1',
+    name: '经典鸡牛配方',
+    description: '适合成猫的基础配方，蛋白质丰富，营养均衡。鸡肉提供易消化蛋白，牛肉补充铁质。',
+    ingredients: [
+      { ingredientId: 'chicken_breast', weightPercent: 40 },
+      { ingredientId: 'chicken_thigh', weightPercent: 15 },
+      { ingredientId: 'beef_lean', weightPercent: 20 },
+      { ingredientId: 'chicken_heart', weightPercent: 10 },
+      { ingredientId: 'chicken_liver', weightPercent: 5 },
+      { ingredientId: 'chicken_neck', weightPercent: 8 },
+      { ingredientId: 'egg_yolk', weightPercent: 2 },
+    ],
+    isDefault: true,
+  },
+  {
+    id: 'template_2',
+    name: '鸡鸭双拼配方',
+    description: '白肉为主的温和配方，适合肠胃敏感的猫咪。鸭肉清热，适合夏季食用。',
+    ingredients: [
+      { ingredientId: 'chicken_breast', weightPercent: 35 },
+      { ingredientId: 'duck_breast', weightPercent: 25 },
+      { ingredientId: 'chicken_heart', weightPercent: 10 },
+      { ingredientId: 'chicken_liver', weightPercent: 5 },
+      { ingredientId: 'chicken_wing', weightPercent: 10 },
+      { ingredientId: 'egg_yolk', weightPercent: 2 },
+      { ingredientId: 'fish_oil', weightPercent: 0.5 },
+    ],
+    isDefault: true,
+  },
+  {
+    id: 'template_3',
+    name: '幼猫成长配方',
+    description: '高蛋白高脂肪配方，满足幼猫快速生长发育需求。牛磺酸充足，促进视力和心脏健康。',
+    ingredients: [
+      { ingredientId: 'chicken_breast', weightPercent: 30 },
+      { ingredientId: 'chicken_thigh', weightPercent: 20 },
+      { ingredientId: 'beef_lean', weightPercent: 15 },
+      { ingredientId: 'chicken_heart', weightPercent: 15 },
+      { ingredientId: 'chicken_liver', weightPercent: 8 },
+      { ingredientId: 'chicken_neck', weightPercent: 8 },
+      { ingredientId: 'egg_yolk', weightPercent: 3 },
+      { ingredientId: 'fish_oil', weightPercent: 0.5 },
+    ],
+    isDefault: true,
+  },
+  {
+    id: 'template_4',
+    name: '兔肉低敏配方',
+    description: '低敏配方，适合对常见肉类过敏的猫咪。兔肉高蛋白低脂肪，易消化吸收。',
+    ingredients: [
+      { ingredientId: 'rabbit', weightPercent: 45 },
+      { ingredientId: 'chicken_breast', weightPercent: 20 },
+      { ingredientId: 'chicken_heart', weightPercent: 10 },
+      { ingredientId: 'beef_liver', weightPercent: 5 },
+      { ingredientId: 'quail', weightPercent: 10 },
+      { ingredientId: 'egg_yolk', weightPercent: 2 },
+      { ingredientId: 'fish_oil', weightPercent: 0.5 },
+    ],
+    isDefault: true,
+  },
+  {
+    id: 'template_5',
+    name: '老年猫养护配方',
+    description: '低脂肪配方，适合老年猫和需要控制体重的猫咪。添加关节保护成分。',
+    ingredients: [
+      { ingredientId: 'chicken_breast', weightPercent: 45 },
+      { ingredientId: 'turkey', weightPercent: 20 },
+      { ingredientId: 'chicken_heart', weightPercent: 10 },
+      { ingredientId: 'chicken_liver', weightPercent: 5 },
+      { ingredientId: 'chicken_neck', weightPercent: 10 },
+      { ingredientId: 'egg_yolk', weightPercent: 2 },
+      { ingredientId: 'kelp_powder', weightPercent: 0.3 },
+    ],
+    isDefault: true,
+  },
+];
+
+/**
+ * 根据模板创建配方
+ * @param template 配方模板
+ * @param totalWeight 总重量(g)
+ * @returns 配方食材列表
+ */
+export function createRecipeFromTemplate(
+  template: RecipeTemplate,
+  totalWeight: number
+): Array<{ ingredientId: string; weight: number }> {
+  return template.ingredients.map(item => ({
+    ingredientId: item.ingredientId,
+    weight: Math.round((totalWeight * item.weightPercent) / 100),
   }));
 }
